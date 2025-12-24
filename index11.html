@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Head Tech </title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* PASSKEY OVERLAY */
+        .lock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }.lock-box {
+        background: #fff;
+        padding: 30px;
+        width: 320px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .lock-box input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+    }
+
+    .lock-box button {
+        width: 100%;
+        padding: 12px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    .error {
+        color: red;
+        display: none;
+    }
+
+    body.locked {
+        overflow: hidden;
+    }
+</style>
+
+</head>
+<body class="locked"><!-- PASSKEY SCREEN --><div class="lock-screen" id="lockScreen">
+    <div class="lock-box">
+        <h2>Enter Passkey</h2>
+        <input type="password" id="passkey" placeholder="Enter passkey">
+        <button onclick="unlockSite()">Unlock</button>
+        <p class="error" id="error">Wrong passkey</p>
+    </div>
+</div><!-- NAVIGATION --><nav>
+    <div class="logo">Aura Head </div>
+    <div class="menu-btn">&#9776;</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav><!-- HERO SECTION --><section class="hero" id="home">
+    <div>
+        <h1>Welcome to My Website</h1>
+        <p>Your modern, simple, and clean web design.</p>
+        <a href="#services" class="btn">Get Started</a>
+    </div>
+</section><!-- ABOUT --><section id="about">
+    <h2>About Us</h2>
+    <p class="fade-in">We build simple and fast websites for everyone.</p>
+</section><!-- SERVICES --><section id="services">
+    <h2>Our Services</h2>
+    <div class="cards">
+        <div class="card fade-in">
+            <h3>Web Design</h3>
+            <p>Beautiful and responsive website designs.</p>
+        </div>
+        <div class="card fade-in">
+            <h3>Development</h3>
+            <p>Fast and optimized code for all devices.</p>
+        </div>
+        <div class="card fade-in">
+            <h3>SEO</h3>
+            <p>Rank your website higher on search engines.</p>
+        </div>
+    </div>
+</section><!-- CONTACT --><section id="contact">
+    <h2>Contact Us</h2>
+    <p class="fade-in">Email: info@mywebsite.com</p>
+</section><div class="back-to-top">↑</div><footer>
+    <p>© 2025 MyWebsite. All rights reserved.</p>
+</footer>
+<script>
+    const PASSKEY = "aura1234"; // CHANGE YOUR PASSKEY HERE
+
+    function unlockSite() {
+        const input = document.getElementById('passkey').value;
+        if (input === PASSKEY) {
+            localStorage.setItem('access', 'granted');
+            document.getElementById('lockScreen').style.display = 'none';
+            document.body.classList.remove('locked');
+        } else {
+            document.getElementById('error').style.display = 'block';
+        }
+    }
+
+    if (localStorage.getItem('access') === 'granted') {
+        document.getElementById('lockScreen').style.display = 'none';
+        document.body.classList.remove('locked');
+    }
+</script>
+<script src="script.js"></script>
+</body>
+</html>
